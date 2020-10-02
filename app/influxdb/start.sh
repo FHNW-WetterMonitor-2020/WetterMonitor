@@ -1,5 +1,10 @@
 #!/bin/bash
 docker network create influxdb
+docker stop influxdb
+docker stop chronograph
+docker rm influxdb
+docker rm chronograph
+
 
 docker run -d -p 8086:8086 \
 	--name influxdb \
