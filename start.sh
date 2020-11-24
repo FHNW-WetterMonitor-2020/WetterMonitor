@@ -1,10 +1,16 @@
 #!/bin/bash
 
-# Start InfluxDB Container
-cd app/influxdb
-./start.sh
+cd app
 
 # Start InfluxDB Container
-cd ../python
+cd influxdb
+./start.sh
+
+# Start Python Container
+#cd ../python
+#./start.sh
+
+# Start Jupyter Container
+cd ../jupyter
 ./start.sh
 

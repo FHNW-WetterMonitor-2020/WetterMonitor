@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
 # import the library
-from fhnw_ds_hs2019_weatherstation_api import data_import as weather
+#from fhnw_ds_hs2019_weatherstation_api import data_import as weather
+import weather_station as weather
+
 import os
 
 # DB and CSV config
