@@ -1,4 +1,3 @@
-#!/bin/bash
 docker network create influxdb
 docker stop influxdb
 docker stop chronograph
