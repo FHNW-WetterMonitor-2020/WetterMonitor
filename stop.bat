@@ -1,15 +1,13 @@
-#!/bin/bash
+cd app
 
-cd wettermonitor
-
-# Start InfluxDB Container
+# Stop InfluxDB Container
 cd influxdb
 call stop.bat
 
-# Start Python Container
-#cd ../python
-#call stop.bat
+# Stop Python Container
+cd ../python
+call stop.bat
 
-# Start Python Container
+# Stop Jupyter Container
 cd ../jupyter
 call stop.bat

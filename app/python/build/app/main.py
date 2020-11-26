@@ -13,9 +13,12 @@ config.db_host='influxdb'
 
 # connect to DB
 weather.connect_db(config)
+
 # clean DB
-weather.clean_db(config)
+# weather.clean_db(config)
+
 # import historic data
-weather.import_historic_data(config)
+# weather.import_historic_data(config)
+
 # import latest data (delta between last data point in DB and current time)
 weather.import_latest_data(config)

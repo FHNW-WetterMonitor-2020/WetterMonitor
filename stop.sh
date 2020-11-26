@@ -7,8 +7,8 @@ cd influxdb
 ./stop.sh
 
 # Start Python Container
-#cd ../python
-#./stop.sh
+cd ../python
+./stop.sh
 
 # Start Jupyter Container
 cd ../jupyter
