@@ -1,19 +1,15 @@
-#!/usr/bin/env python3
-
 # import the library
-#from fhnw_ds_hs2019_weatherstation_api import data_import as weather
-import weather_station as weather
-
-import os
+import fhnw_ds_weatherstation_client as weather
+# import os
 
 # DB and CSV config
 config = weather.Config()
 # define CSV path (you need to define this based on your environment)
-config.historic_data_folder='.'+os.sep+'data'
+# config.historic_data_folder='.'+os.sep+'data'
 # set batch size for DB inserts (decrease for raspberry pi)
-config.historic_data_chunksize=10000
+# config.historic_data_chunksize=10000
 # define DB host
-config.db_host='localhost'
+config.db_host='influxdb'
 
 # connect to DB
 weather.connect_db(config)
@@ -23,4 +19,3 @@ weather.clean_db(config)
 weather.import_historic_data(config)
 # import latest data (delta between last data point in DB and current time)
 weather.import_latest_data(config)
-

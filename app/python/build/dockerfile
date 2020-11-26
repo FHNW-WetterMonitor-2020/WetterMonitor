@@ -1,10 +1,10 @@
-FROM python:3.7.9
+FROM python:3.8
 
 RUN apt-get update
-RUN apt-get install curl gcc g++
+# RUN apt-get install curl gcc g++
+# RUN pip3 install pandas==0.23.4
 
-RUN pip3 install pandas==0.23.4
-RUN pip3 install fhnw_ds_hs2019_weatherstation_api
+RUN pip3 install install fhnw_ds_weatherstation_client
 
 ADD app /app
 ADD data /app/data
