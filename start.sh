@@ -11,8 +11,8 @@ cd ../python
 ./start.sh
 
 # Start Jupyter Container
-cd ../jupyter
-./start.sh
+#cd ../jupyter
+#./start.sh
 
 # Start Dash Container
 cd ../dash
