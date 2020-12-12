@@ -14,3 +14,6 @@ cd ../python
 cd ../jupyter
 ./stop.sh
 
+# Stop Dash Container
+cd ../dash
+./stop.sh
