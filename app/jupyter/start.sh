@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker build -t wetter_monitor_jupyter build/
+docker build -t wetter_monitor_jupyter:1.0 build/
 docker stop wetter_monitor_jupyter
 docker rm wetter_monitor_jupyter
 
@@ -10,4 +10,4 @@ docker run -d \
 	--name wetter_monitor_jupyter \
 	-v "$PWD/jupyter-data":/data/jupyter \
 	-v "$PWD/jupyter.config":/root/.jupyter/jupyter_notebook_config.py \
-	wetter_monitor_jupyter
+	wetter_monitor_jupyter:1.0

@@ -1,4 +1,4 @@
-FROM wetter-monitor-python
+FROM wetter-monitor-python:1.1
 
 RUN pip install jupyterlab
 
