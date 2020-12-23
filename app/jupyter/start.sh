@@ -5,7 +5,7 @@ docker stop wetter_monitor_jupyter
 docker rm wetter_monitor_jupyter
 
 docker run -d \
-	--network influxdb \
+	--network wettermonitor \
 	-p 8890:8888 \
 	--name wetter_monitor_jupyter \
 	-v "$PWD/jupyter-data":/data/jupyter \

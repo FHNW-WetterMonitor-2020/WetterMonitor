@@ -2,15 +2,19 @@
 
 cd app
 
-# Start InfluxDB Container
+# Stop InfluxDB Container
 cd influxdb
 ./stop.sh
 
-# Start Python Container
-cd ../python
+# Stop Base Container
+cd ../base-data
 ./stop.sh
 
-# Start Jupyter Container
+# Stop Increment Container
+cd ../increment-data
+./stop.sh
+
+# Stop Jupyter Container
 cd ../jupyter
 ./stop.sh
 

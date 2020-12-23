@@ -6,8 +6,8 @@ cd app
 cd influxdb
 ./start.sh
 
-# Start Python Container
-cd ../python
+# Start Incremental-Data Container
+cd ../incremental-data
 ./start.sh
 
 # Start Jupyter Container
