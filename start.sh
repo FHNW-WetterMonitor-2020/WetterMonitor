@@ -17,3 +17,5 @@ cd ../incremental-data
 # Start Dash Container
 cd ../dash
 ./start.sh
+
+chromium-browser http://localhost:8050/

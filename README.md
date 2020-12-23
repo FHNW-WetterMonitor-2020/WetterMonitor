@@ -12,7 +12,7 @@ The weather data is automatically updated every 30 minutes and displayed through
 The main entrypoint of the application is the `start.sh`-script in the root of the project. Everything needed will be started with this script.  
 
 >IMPORTANT: MAKE SURE TO IMPORT THE BASE DATA FIRST WITH: `initial-setup.sh`!
->This initial startup adds the `start.sh`-script to the autostart of the raspberry-pi.  
+>This initial setup adds the `start.sh`-script to the autostart of the raspberry-pi.  
 
 ## Docker
 
