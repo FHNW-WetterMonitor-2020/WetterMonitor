@@ -18,4 +18,4 @@ cd ../incremental-data
 cd ../dash
 ./start.sh
 
-chromium-browser http://localhost:8050/
+chromium-browser --no-sandbox http://localhost:8050/
