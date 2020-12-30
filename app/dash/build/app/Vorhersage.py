@@ -18,7 +18,7 @@ def get_last_timestamp(wetterstation):
 def get_datapoint(timestamp):
     """Alle Werte eines timestamps abfragen"""
     bind_params = {'timestamp': str(timestamp)}
-    query = 'SELECT * FROM "tiefenbrunnen" WHERE time = $timestamp'
+    query = 'SELECT * FROM "tiefenbrunnen" WHERE time > $timestamp LIMIT 1'
     res = client.query(query, bind_params=bind_params)
     return res
 
