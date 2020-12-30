@@ -2,8 +2,12 @@ import dash
 #from dash.dependencies import Input, Output
 import dash_core_components as dcc
 import dash_html_components as html
+import dash_bootstrap_components as dbc
+
 import plotly.graph_objs as go
 import pandas as pd
+import datetime
+import pytz
 from influxdb import InfluxDBClient
 from Vorhersage import get_datapoint, get_last_timestamp, make_pred, make_timestamp_readable, name_winddir
 
@@ -12,6 +16,13 @@ client = InfluxDBClient('influxdb', 8086, '', '', 'meteorology')
 #Aktuellster timestamp von Tiefenbrunnen
 last_data = get_last_timestamp("tiefenbrunnen")
 timestamp_now = pd.Timestamp(last_data[0])
+
+#Meldung, wenn nicht die aktuellsten Daten angezeigt werden.
+diff_now = (datetime.datetime.now(pytz.utc) - timestamp_now).seconds
+if diff_now > 2100:
+    inet = "Bitte prüfen Sie die Internetverbindung."
+else:
+    inet = "Sie sehen die aktuellsten Daten."
 
 #Alle aktuellen Werte abfragen
 datapoint = get_datapoint(make_timestamp_readable(timestamp_now))
@@ -26,16 +37,21 @@ for item in datapoint:
 winddir = name_winddir(winddir_now)
 
 #historische Daten
-liste = [str(timestamp_now.year-1), "-", str(timestamp_now.month), "-", str(timestamp_now.day), " ", str(timestamp_now.hour), ":", str(timestamp_now.minute), ":00"]
+#str(timestamp_now.minute)
+liste = [str(timestamp_now.year-1), "-", str(timestamp_now.month), "-", str(timestamp_now.day), " ", str(timestamp_now.hour), ":", "00", ":00"]
 timestamp_hist = "".join(liste)
+print(timestamp_hist)
 datapoint = get_datapoint(timestamp_hist)
 for item in datapoint:
     temperature_hist = item[0]['air_temperature']
     luftdruck_hist = item[0]['barometric_pressure_qfe']
 
 #Graph für die Lufttemperatur definieren
-query = 'SELECT air_temperature FROM "tiefenbrunnen" WHERE time > now()-5h'
-res = client.query(query)
+liste = [str(timestamp_now.year), "-", str(timestamp_now.month), "-", str(timestamp_now.day), " ", str(timestamp_now.hour-5), ":", str(timestamp_now.minute), ":00"]
+timestamp_dauer = "".join(liste)
+query = 'SELECT air_temperature FROM "tiefenbrunnen" WHERE time > $timestamp'
+bind_params = {'timestamp': timestamp_dauer}
+res = client.query(query, bind_params=bind_params)
 zeitverlauf = []
 temperaturverlauf = []
 for item in res:
@@ -58,7 +74,9 @@ if luftdruck_now <= 955:
 else:
     niederschlag = "NEIN"
 
-app = dash.Dash()
+app = dash.Dash(
+	external_stylesheets=[dbc.themes.BOOTSTRAP]
+)
 
 app.layout = html.Div([
     dcc.Interval(
@@ -87,6 +105,7 @@ app.layout = html.Div([
         html.Div([
             html.H1("Aktuelle Wetterdaten"),
             html.H3(["Aktualisiert am ", timestamp_now.day, ".", timestamp_now.month, ".", timestamp_now.year, " um ", timestamp_now.hour, ":", timestamp_now.minute]),
+            html.H4(inet),
         ]),
 
         html.Div([
@@ -97,7 +116,7 @@ app.layout = html.Div([
         html.Div([
             html.P("Gefühlte Lufttemperatur: "),
             html.H3([windchill_now, " °C"]),
-        ], style={'marginBottom': 30, 'marginTop': 25}),
+        ], style={'marginBottom': 30, 'marginTop': 25} ),
 
         html.Div([
             html.P("Windrichtung: "),
@@ -138,11 +157,10 @@ app.layout = html.Div([
     html.Div([
         html.Div([
             html.H1("Wettervorhersage"),
-            html.H3(["für ", timestamp_now.hour +s, ":", timestamp_now.minute]),
         ]),
 
         html.Div([
-            html.P("Lufttemperatur: "),
+            html.P(["Lufttemperatur um ", (timestamp_now.hour +s)%24, ":", timestamp_now.minute, " Uhr"]),
             html.H3([temperature_pred, " °C"]),
         ], style={'marginBottom': 30, 'marginTop': 25}),
 
@@ -172,4 +190,4 @@ app.layout = html.Div([
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True, host='0.0.0.0')
+    app.run_server(debug=True, host = '0.0.0.0')
