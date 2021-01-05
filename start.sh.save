@@ -1,15 +1,14 @@
-#!/bin/bash
+chromium-browser --no-sandbox http://localhost:8050/#!/bin/bash
 
-cd /home/pi/fhnw2/WetterMonitor/app
+cd app
 
 # Start InfluxDB Container
 cd influxdb
-sudo ./start.sh
-sleep 2
+./start.sh
 
 # Start Incremental-Data Container
 cd ../incremental-data
-sudo ./start.sh
+./start.sh
 
 # Start Jupyter Container
 #cd ../jupyter
@@ -17,7 +16,6 @@ sudo ./start.sh
 
 # Start Dash Container
 cd ../dash
-sudo ./start.sh
+./start.sh
 
-sleep 3
 chromium-browser http://localhost:8050/

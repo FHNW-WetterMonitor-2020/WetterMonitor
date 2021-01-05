@@ -10,8 +10,8 @@ docker run -d -p 8086:8086 \
 	--name influxdb \
 	--net wettermonitor \
 	--net-alias influxdb \
-	-v "$PWD/influxdb.conf":/etc/influxdb/influxdb.conf:ro \
-	-v "$PWD/influxdb-data":/var/lib/influxdb \
+	-v "/home/pi/fhnw2/WetterMonitor/app/influxdb/influxdb.conf":/etc/influxdb/influxdb.conf:ro \
+	-v "/home/pi/fhnw2/WetterMonitor/app/influxdb/influxdb-data":/var/lib/influxdb \
 	influxdb -config /etc/influxdb/influxdb.conf
 
 docker run -d -p 8888:8888 \
