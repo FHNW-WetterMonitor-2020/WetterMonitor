@@ -87,7 +87,7 @@ old_hist = old_timezone.localize(datetime.datetime(timestamp_hist.year, timestam
 tst_hist_loc = old_hist.astimezone(new_timezone)
 
 app = dash.Dash(
-        external_stylesheets=[dbc.themes.BOOTSTRAP]
+        # external_stylesheets=[dbc.themes.BOOTSTRAP]
 )
 
 app.layout = html.Div([
