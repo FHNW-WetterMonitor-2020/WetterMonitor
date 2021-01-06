@@ -1,14 +1,15 @@
 #!/bin/bash
 
-cd app
+cd /home/pi/fhnw2/WetterMonitor/app
 
 # Start InfluxDB Container
 cd influxdb
-./start.sh
+sudo ./start.sh
+sleep 2
 
 # Start Incremental-Data Container
 cd ../incremental-data
-./start.sh
+sudo ./start.sh
 
 # Start Jupyter Container
 #cd ../jupyter
@@ -16,7 +17,7 @@ cd ../incremental-data
 
 # Start Dash Container
 cd ../dash
-./start.sh
+sudo ./start.sh
 
 # Wait for dash to start
 sleep 3
