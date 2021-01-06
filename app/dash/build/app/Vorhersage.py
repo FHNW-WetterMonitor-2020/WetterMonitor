@@ -46,7 +46,7 @@ def name_winddir(winddirection):
         return 'W'
     elif 292.5 <= winddirection < 337.5:
         return 'N/W'
-    elif winddirection < 22.5 and winddirection >= 337.5:
+    elif winddirection < 22.5 or winddirection >= 337.5:
         return 'N'
     else:
         return 'kein Wind'
@@ -96,7 +96,7 @@ def make_pred(timestamp, temp, pred_duration):
             similar_data.append(list(item.values()))
 
     # In den ähnlichen Daten die k nächsten Nachbarn suchen; k+1 weil der Punkt sich selbst immer am nächsten ist
-    k = 4
+    k = 3
     neighbors = get_neighbors(similar_data, similar_data[0], k + 1)  # k+1 nächsten Datensätze als Nachbarn speichern
     neighbors = neighbors[1:]  # der erste ist immer der Datenpunkt selbst, somit kein echter Nachbar
 

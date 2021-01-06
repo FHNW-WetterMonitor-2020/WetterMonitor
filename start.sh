@@ -18,4 +18,7 @@ cd ../incremental-data
 cd ../dash
 ./start.sh
 
+# Wait for dash to start
+sleep 3
+
 chromium-browser --no-sandbox http://localhost:8050/
