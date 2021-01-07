@@ -14,4 +14,4 @@ cd ../../
 ./stop.sh
 
 # WETTER_MONITOR_ROOT=$(pwd)
-# echo "sudo bash $WETTER_MONITOR_ROOT/start.sh" >> /etc/rc.local
+# sudo echo "sudo bash $WETTER_MONITOR_ROOT/start.sh" >> /etc/rc.local

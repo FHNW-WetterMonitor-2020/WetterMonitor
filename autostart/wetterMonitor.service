@@ -1,0 +1,11 @@
+[Unit] 
+Description=WetterMonitor 
+After=syslog.target 
+
+[Service] 
+Type=simple
+ExecStart=/home/pi/fhnw2/WetterMonitor/start.sh
+Restart=on-failure 
+
+[Install]
+WantedBy=multi-user.target

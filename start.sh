@@ -21,5 +21,7 @@ sudo ./start.sh
 cd ../dash
 sudo ./start.sh
 
+# Wait for dash to start
 sleep 3
-chromium-browser http://localhost:8050/
+
+chromium-browser --no-sandbox http://localhost:8050/
