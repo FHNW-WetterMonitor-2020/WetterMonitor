@@ -2,6 +2,8 @@
 
 cd /home/pi/fhnw2/WetterMonitor/app
 
+sleep 10
+
 # Start InfluxDB Container
 cd influxdb
 sudo ./start.sh
