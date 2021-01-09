@@ -10,8 +10,8 @@ cd influxdb
 cd ../base-data
 ./stop.sh
 
-# Stop Increment Container
-cd ../increment-data
+# Stop Incremental Container
+cd ../incremental-data
 ./stop.sh
 
 # Stop Jupyter Container
@@ -21,3 +21,5 @@ cd ../jupyter
 # Stop Dash Container
 cd ../dash
 ./stop.sh
+
+docker network rm wettermonitor

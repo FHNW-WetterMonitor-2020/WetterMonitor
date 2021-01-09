@@ -7,7 +7,7 @@ sleep 10
 # Start InfluxDB Container
 cd influxdb
 sudo ./start.sh
-sleep 2
+sleep 30
 
 # Start Incremental-Data Container
 cd ../incremental-data
@@ -22,6 +22,6 @@ cd ../dash
 sudo ./start.sh
 
 # Wait for dash to start
-sleep 3
+sleep 10
 
 chromium-browser --no-sandbox http://localhost:8050/
