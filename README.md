@@ -25,6 +25,8 @@ they will automatically try to restart.
 
 A possible improvement could be to manage the docker containers through docker-compose, however that would require another package to be installed and maintained.
 
+>IMPORTANT: When the incremental-data container cannot connect to the internet, add `nameserver 8.8.8.8` to the file `/etc/resolv.conf` to fix the issue.
+
 ## Components
 
 ### InfluxDB with Chronograph

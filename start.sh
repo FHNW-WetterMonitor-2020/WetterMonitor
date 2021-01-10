@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Make sure the resolv.conf has a valid nameserver
+# Add 8.8.8.8 if it does not exist
+sudo echo -e "nameserver 8.8.8.8\n$(cat /etc/resolv.conf | grep -v 8.8.8.8)" > resolv.conf
+sudo cp resolv.conf /etc/resolv.conf
+
 cd /home/pi/fhnw2/WetterMonitor/app
 
 sleep 10
